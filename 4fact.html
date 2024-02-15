@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="factApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="calculatorcontroller">
+    <h2>Facotrial and Square calculation.</h2>
+    <input type="number" ng-model="factnum">
+    <button ng-click="factorialcalc()">Calculate factorial</button>
+    <button ng-click="Square()">Calculate Square</button>
+    <p ng-show="factresult !== undefined">Facotrial:{{factresult}}</p>
+    <p ng-show="squareresult !== undefined">Square:{{squareresult}}</p>
+
+    <script>
+        var app = angular.module("factApp", []);
+        app.controller("calculatorcontroller", function ($scope) {
+            $scope.factorialcalc = function () {
+                if ($scope.factnum >= 0) {
+                    $scope.factresult = factorial($scope.factnum);
+                }
+                else {
+                    $scope.factresult = "Can't calcute"
+                }
+            }
+            function factorial(n) {
+                if (n == 0 || n == 1) {
+                    return 1;
+                }
+                else {
+                    return n * factorial(n - 1);
+                }
+            }
+            $scope.Square = function () {
+                $scope.squareresult = $scope.factnum ** 2;
+            }
+
+        });
+    </script>
+</body>
+
+</html> 
